@@ -2,7 +2,7 @@ package datos;
 
 import java.sql.*;
 
-public class DBConnection {
+public class Conexion {
 
     private static final String JDBC_URL = "jdbc:mysql://localhost/test?useSSL=false&serverTimezone=UTC";
     private static final String JDBC_USER = "root";
