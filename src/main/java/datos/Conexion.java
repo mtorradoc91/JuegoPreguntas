@@ -1,39 +1,31 @@
 package datos;
 
-import java.sql.*;
+import com.mysql.jdbc.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Conexion {
 
-    private static final String JDBC_URL = "jdbc:mysql://localhost/test?useSSL=false&serverTimezone=UTC";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/juego_preguntas";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "admin";
+    private Connection conexion = null;
 
-    public static Connection getConnection() throws SQLException{
-        return DriverManager.getConnection( JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-    }
+    public Connection getConnection(){
 
-    public static void Close(ResultSet resultSet){
         try{
-            resultSet.close();
-        } catch (SQLException exception){
-            exception.printStackTrace(System.out);
-        }
-    }
+            Class.forName("com.mysql.jdbc.Driver");
+            conexion = (Connection) DriverManager.getConnection(this.JDBC_URL, this.JDBC_USER, this.JDBC_PASSWORD);
 
-    public static void Close(PreparedStatement preparedStatement){
-        try {
-            preparedStatement.close();
-        } catch (SQLException exception){
-            exception.printStackTrace(System.out);
+        } catch(SQLException e)
+        {
+            System.err.println(e);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public static void Close(Connection connection){
-        try {
-            connection.close();
-        } catch (SQLException exception){
-            exception.printStackTrace(System.out);
-        }
+        return conexion;
     }
 
 }

@@ -1,6 +1,5 @@
 INSERT INTO `juego_preguntas`.`respuestas` (`id_pregunta`, `respuesta`, `respuesta_correcta`, `puntuacion_respuesta`) VALUES ('1', 'A. Inglés', b'0', '0');
 INSERT INTO `juego_preguntas`.`respuestas` (`id_pregunta`, `respuesta`, `respuesta_correcta`, `puntuacion_respuesta`) VALUES ('1', 'B. Mandarín', b'0', '0');
-INSERT INTO `juego_preguntas`.`respuestas` (`id_pregunta`, `respuesta`, `respuesta_correcta`, `puntuacion_respuesta`) VALUES ('1', 'B. Mandarín', b'0', '0');
 INSERT INTO `juego_preguntas`.`respuestas` (`id_pregunta`, `respuesta`, `respuesta_correcta`, `puntuacion_respuesta`) VALUES ('1', 'C. Español', b'1', '5000');
 INSERT INTO `juego_preguntas`.`respuestas` (`id_pregunta`, `respuesta`, `respuesta_correcta`, `puntuacion_respuesta`) VALUES ('1', 'D. Portugués', b'0', '0');
 INSERT INTO `juego_preguntas`.`respuestas` (`id_pregunta`, `respuesta`, `respuesta_correcta`, `puntuacion_respuesta`) VALUES ('2', 'A. Cundinamarca', b'1', '5000');

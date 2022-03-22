@@ -32,7 +32,7 @@ public class ValidarRespuestaJF extends javax.swing.JFrame {
 
         tituloValidacionRespuesta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         tituloValidacionRespuesta.setForeground(new java.awt.Color(102, 102, 102));
-        tituloValidacionRespuesta.setText("Validación de respuesta");
+        tituloValidacionRespuesta.setText("Validacion de respuesta");
 
         descripcionValidacionRespuesta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         descripcionValidacionRespuesta.setForeground(new java.awt.Color(102, 102, 102));

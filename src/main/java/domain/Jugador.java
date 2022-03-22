@@ -10,6 +10,11 @@ public class Jugador {
     
     public Jugador(){
     }
+
+    public Jugador(String nombre, BigDecimal puntuacion){
+        this.nombreJugador = nombre;
+        this.puntuacionJugador = puntuacion;
+    }
     
     public Jugador(int id, String nombre, BigDecimal puntuacion){
         this.idJugador = id;
@@ -36,5 +41,5 @@ public class Jugador {
 
     public void setPuntuacionJugador(BigDecimal puntuacionJugador) {
         this.puntuacionJugador = puntuacionJugador;
-    }   
+    }
 }
