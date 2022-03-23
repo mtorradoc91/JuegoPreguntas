@@ -1,7 +1,35 @@
 package vistas;
 
+import datos.Conexion;
+
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class NuevoJugadorJF extends javax.swing.JFrame {
-    
+
+    public void insertarJugador(){
+        String SQL_INSERT_JUGADOR = "INSERT INTO jugador(nombre_jugador, puntaje) VALUES(?, 0)";
+
+        try{
+            PreparedStatement preparedStatement = null;
+            ResultSet resultSet = null;
+            Conexion conexion = new Conexion();
+            Connection connectionClass = conexion.getConnection();
+            int rows = 0;
+
+            preparedStatement = connectionClass.prepareStatement(SQL_INSERT_JUGADOR);
+            preparedStatement.setString(1, nombreJugador.getText());
+            rows = preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            JOptionPane.showMessageDialog(null, "Error de registro: " + exception.getMessage());
+        }
+    }
+
+
+
     public NuevoJugadorJF() {
         initComponents();
     }
@@ -26,6 +54,12 @@ public class NuevoJugadorJF extends javax.swing.JFrame {
         descripcionNuevoJugador.setForeground(new java.awt.Color(102, 102, 102));
         descripcionNuevoJugador.setText("Hola, por favor ingresa tu nombre y apellido");
 
+        nombreJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreJugadorActionPerformed(evt);
+            }
+        });
+
         botonIniciarJuego.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         botonIniciarJuego.setForeground(new java.awt.Color(51, 51, 51));
         botonIniciarJuego.setText("Iniciar Juego");
@@ -48,45 +82,46 @@ public class NuevoJugadorJF extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(descripcionNuevoJugador))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nombreJugador)
-                            .addComponent(botonIniciarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))))
-                .addContainerGap(57, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(tituloRegistroJugador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonSalir))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(41, 41, 41)
+                                                .addComponent(descripcionNuevoJugador))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(103, 103, 103)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(nombreJugador)
+                                                        .addComponent(botonIniciarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))))
+                                .addContainerGap(57, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(tituloRegistroJugador)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonSalir))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tituloRegistroJugador))
-                    .addComponent(botonSalir))
-                .addGap(60, 60, 60)
-                .addComponent(descripcionNuevoJugador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(botonIniciarJuego)
-                .addContainerGap(34, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(tituloRegistroJugador))
+                                        .addComponent(botonSalir))
+                                .addGap(60, 60, 60)
+                                .addComponent(descripcionNuevoJugador)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(botonIniciarJuego)
+                                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarJuegoActionPerformed
+        insertarJugador();
         JuegoJF pantallaJuego = new JuegoJF();
         pantallaJuego.setVisible(true);
         dispose();
@@ -95,6 +130,10 @@ public class NuevoJugadorJF extends javax.swing.JFrame {
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void nombreJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreJugadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreJugadorActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

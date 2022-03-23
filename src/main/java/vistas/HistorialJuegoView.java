@@ -1,6 +1,8 @@
 package vistas;
 
 import datos.Conexion;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
@@ -143,11 +145,11 @@ public class HistorialJuegoView extends javax.swing.JFrame {
 
             PreparedStatement preparedStatement = null;
             ResultSet resultSet = null;
-            Conexion conn = new Conexion();
-            Connection con = conn.getConnection();
+            Conexion conexion = new Conexion();
+            Connection connectionClass = conexion.getConnection();
 
-            String SQL = "SELECT nombre_jugador, puntaje FROM jugador";
-            preparedStatement = con.prepareStatement(SQL);
+            String SQL_SELECT_JUGADORES = "SELECT nombre_jugador, puntaje FROM jugador";
+            preparedStatement = connectionClass.prepareStatement(SQL_SELECT_JUGADORES);
             resultSet = preparedStatement.executeQuery();
 
             ResultSetMetaData rsMd = (ResultSetMetaData) resultSet.getMetaData();
@@ -169,8 +171,8 @@ public class HistorialJuegoView extends javax.swing.JFrame {
                 modelo.addRow(filas);
             }
 
-        } catch (SQLException ex) {
-            System.err.println(ex.toString());
+        } catch (SQLException exception) {
+            JOptionPane.showMessageDialog(null,"Error mostrando historial: " + exception.getMessage());
         }
     }//GEN-LAST:event_botonCargarHistorialActionPerformed
 

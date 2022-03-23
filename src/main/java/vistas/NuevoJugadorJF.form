@@ -92,6 +92,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nombreJugador">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nombreJugadorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonIniciarJuego">
       <Properties>
