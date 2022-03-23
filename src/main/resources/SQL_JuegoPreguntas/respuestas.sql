@@ -5,7 +5,6 @@ CREATE TABLE `juego_preguntas`.`respuestas` (
   `respuesta_correcta` BIT NOT NULL,
   `puntuacion_respuesta` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`id_respuesta`),
-  INDEX `FK_id_pregunta_idx` (`id_pregunta` ASC) VISIBLE,
   CONSTRAINT `FK_id_pregunta`
     FOREIGN KEY (`id_pregunta`)
     REFERENCES `juego_preguntas`.`preguntas` (`id_pregunta`)
